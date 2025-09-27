@@ -1,6 +1,11 @@
 # TaskDemo
 
-## Instructions to run
+## To build and run in local
+
+### Pre-requisites:
+* Java 17
+* Maven
+* Docker Engine
 
 - [ ] Make sure docker is available in your local system
 - [ ] Run the shell file **_build-and-deploy.sh_** from the scripts directory
