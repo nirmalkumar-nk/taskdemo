@@ -1,4 +1,4 @@
-IMAGE_NAME="taskdemo-image"
+IMAGE_NAME="nirmalkumarp/taskdemo-image"
 printf "removing docker image %s if already exist" $IMAGE_NAME
 docker image rm $IMAGE_NAME
 cd ..
