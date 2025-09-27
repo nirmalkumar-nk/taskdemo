@@ -18,4 +18,4 @@
 ## To run only with Docker
 ### Instructions
 
- - [ ] run the command **_docker compose -f docker-repo.yml_** up from  **_/docker_**
+ - [ ] run the command **_docker compose -f docker-repo.yml up_** from  **_/docker_**
