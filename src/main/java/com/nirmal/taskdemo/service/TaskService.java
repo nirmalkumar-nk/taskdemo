@@ -4,6 +4,7 @@ import com.nirmal.taskdemo.entity.Task;
 import com.nirmal.taskdemo.mapper.TaskMapper;
 import com.nirmal.taskdemo.model.TaskDto;
 import com.nirmal.taskdemo.repository.TaskRepository;
+import com.nirmal.taskdemo.service.kafka.KafkaTaskProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +20,20 @@ import static com.nirmal.taskdemo.utility.AppUtility.logObjectAsString;
 public class TaskService {
 
     private final TaskRepository taskRepository;
+    private final KafkaTaskProducer kafkaTaskProducer;
     private final TaskMapper taskMapper = Mappers.getMapper(TaskMapper.class);
 
     @Autowired
-    public TaskService(TaskRepository taskRepository) {
+    public TaskService(TaskRepository taskRepository, KafkaTaskProducer kafkaTaskProducer) {
         this.taskRepository = taskRepository;
+        this.kafkaTaskProducer = kafkaTaskProducer;
     }
 
     public String createTask(TaskDto taskDto) {
         log.info("Task to create: {}", logObjectAsString(taskDto));
         Task task = taskRepository.save(taskMapper.mapTask(taskDto));
         log.info("Task created for title {}", taskDto.getTitle());
+        kafkaTaskProducer.produceTask(task);
         return task.getId();
     }
 

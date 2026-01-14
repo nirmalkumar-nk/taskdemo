@@ -20,3 +20,7 @@
 
  - [ ] run the command `docker compose -f docker-repo.yml up` from  `/docker`
  - [ ] The Server is available in the port `8000`
+
+
+## App Description
+* A simple app to demo Docker, Postgres, Kafka and more the come
